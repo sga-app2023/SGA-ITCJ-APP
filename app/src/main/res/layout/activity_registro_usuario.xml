@@ -252,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:textAllCaps="false"
-                android:text="Registrar"
+                android:text="@string/btn_registrar"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:backgroundTint="@color/red_600" />

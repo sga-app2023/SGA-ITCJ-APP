@@ -80,7 +80,7 @@
             android:layout_marginTop="100dp"
             android:padding="15dp"
             android:textAllCaps="false"
-            android:text="Enviar"
+            android:text="@string/btn_enviar"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:backgroundTint="@color/red_600" />

@@ -40,10 +40,16 @@
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.1185" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1185" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.1185" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/activity_login_usuario.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/activity_menu_usuario.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/activity_registro_usuario.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_enviar_correo.xml" value="0.2" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_generar_aviso.xml" value="0.2" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_informacion_usuario.xml" value="0.184375" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_marcadores_pilas.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_reciclaje.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_reportes_alumnos_servicio.xml" value="0.16417272338606242" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_residuos_peligrosos.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/layout_sistema_riego.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/row_item.xml" value="0.21" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/SGA-ITCJ-APP/app/src/main/res/layout/row_item_reporte.xml" value="0.16417272338606242" />

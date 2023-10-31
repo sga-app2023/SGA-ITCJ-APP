@@ -90,7 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:padding="15dp"
                 android:textAllCaps="false"
-                android:text="Guardar cambios"
+                android:text="@string/btn_guardar_cambios"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:backgroundTint="@color/red_600" />
