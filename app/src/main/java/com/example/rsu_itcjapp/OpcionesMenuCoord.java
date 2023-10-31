@@ -83,31 +83,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
         TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.tie_correo_aviso);
         TextInputEditText txtInformacion = (TextInputEditText) findViewById(R.id.tie_informacion_aviso);
 
-        Button btnAvisoAnterior = (Button) findViewById(R.id.btn_aviso_anterior);
         Button btnGuardarAviso = (Button) findViewById(R.id.btn_guardar_aviso);
-
-        btnAvisoAnterior.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                InputMethodManager inputMethodManager =
-                        (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
-                databaseSGA.getDbRef().child(path).get()
-                        .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                            @Override
-                            public void onComplete(@NotNull Task<DataSnapshot> task) {
-                                Aviso aviso = task.getResult().getValue(Aviso.class);
-                                if (aviso != null) {
-                                    txtTitulo.setText(aviso.getTitulo());
-                                    txtCorreo.setText(aviso.getCorreo());
-                                    txtInformacion.setText(aviso.getInfo());
-                                }
-                            }
-                        });
-            }
-        });
 
         btnGuardarAviso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,7 +227,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
         TextInputEditText txtArea = (TextInputEditText) findViewById(R.id.txt_area_inf);
         TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.txt_correo_inf);
 
-        Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
+        //Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
 
         tilCarrera.setVisibility(View.GONE);
         tilMatricula.setVisibility(View.GONE);
@@ -262,7 +238,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
         txtApellidoMaterno.setText(docente.getApellidoMaterno());
         txtArea.setText(docente.getArea());
         txtCorreo.setText(databaseSGA.getUser().getEmail());
-
+    /*
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -274,6 +250,9 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                finish();
            }
         });
+
+    */
+
     }
 
 }

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:background="@drawable/border_layout"
+    android:padding="5dp"
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical">
@@ -32,7 +31,7 @@
                 android:layout_weight="1.8"
                 android:text="Fernando Ambrosio Borbonio"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="21dp"
                 android:gravity="center"
                 />
 
@@ -43,7 +42,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="18111912"
-                android:textSize="20sp"
+                android:textSize="21dp"
                 />
 
         </LinearLayout>
@@ -63,7 +62,7 @@
                 android:layout_weight="1.8"
                 android:gravity="center"
                 android:text="Reciclaje"
-                android:textSize="20sp"
+                android:textSize="21dp"
                 />
 
             <TextView
@@ -74,7 +73,7 @@
                 android:gravity="center"
                 android:text="Reporte 1"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="21dp"
                 />
 
 

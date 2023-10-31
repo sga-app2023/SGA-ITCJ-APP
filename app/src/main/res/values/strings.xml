@@ -4,6 +4,8 @@
     <string name="btn_alumno">Alumno</string>
     <string name="btn_entrar_alumno">Entrar</string>
     <string name="btn_crear_cuenta">Crear cuenta</string>
+    <string name="tw_coordinador">Coordinador</string>
+    <string name="tw_alumno">Alumno</string>
 
     <string-array name="departamentos">
         <item>Departamento Económico-Administrativo</item>

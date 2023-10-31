@@ -180,8 +180,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             }
         });
 
-        databaseSGA.verificarNodo(path);
-
         btnReciclaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,10 +239,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
         actDepartamento.setAdapter(adapterDepartamento);
         actCategoria.setAdapter(adapterCategorias);
-
-        databaseSGA.verificarNodo(Constantes.PATH_MARCADORES);
-        databaseSGA.verificarNodo(Constantes.PATH_PILAS);
-        databaseSGA.verificarNodo(Constantes.PATH_TONERS);
 
         txtFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,8 +322,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         tilFaseManejo.setVisibility(View.GONE);
         tilPrestadorServicio.setVisibility(View.GONE);
         tilNumAuto.setVisibility(View.GONE);
-
-        databaseSGA.verificarNodo(path);
 
         actResiduo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -453,8 +445,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 new ArrayAdapter<>(this, R.layout.dropdown_menu, turnos);
         actTurno.setAdapter(turnosRiegoAdapter);
 
-        databaseSGA.verificarNodo(path);
-
         txtFechaRiego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -529,7 +519,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String destinatario = txtDestinatario.getText().toString();
+                String destinatario = txtDestinatario.getText().toString().trim();
                 String asunto = txtAsunto.getText().toString();
                 String mensaje = txtMensaje.getText().toString();
 
@@ -595,7 +585,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         TextInputEditText txtFechaInicio = (TextInputEditText) findViewById(R.id.txt_fecha_inicio_inf);
         TextInputEditText txtFechaFinal = (TextInputEditText) findViewById(R.id.txt_fecha_final_inf);
 
-        Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
+        //Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
 
         txtNombreUsuario.setText(alumno.getNombre());
         txtApellidoPaterno.setText(alumno.getApellidoPaterno());
@@ -608,6 +598,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         txtFechaInicio.setText(fechaInicio);
         txtFechaFinal.setText(fechaFin);
 
+        /*
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -621,6 +612,8 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 finish();
             }
         });
+
+         */
 
     }
 }

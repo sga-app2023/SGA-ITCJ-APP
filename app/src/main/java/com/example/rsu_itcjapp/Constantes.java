@@ -16,10 +16,8 @@ public class Constantes {
     public static final String EMAIL = "Enviar correo";
     public static final String PERFIL = "Perfil";
     public static final String AVISO = "Generar aviso";
+    public static final String CERRAR_SESION = "Cerrar sesión";
     public static final String REPORTE_BIMESTRAL = "Alumnos servicio social";
-    public static final String PATH_MARCADORES = "contadores/marcadoresBitacoraContador";
-    public static final String PATH_PILAS = "contadores/pilasBitacoraContador";
-    public static final String PATH_TONERS = "toners/marcadoresBitacoraContador";
 
     public static final String CORREO_DIR = "dir_cdjuarez@tecnm.mx";
 

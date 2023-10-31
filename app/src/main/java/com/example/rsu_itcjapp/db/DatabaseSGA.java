@@ -104,21 +104,6 @@ public class DatabaseSGA {
         });
     }
 
-    public void verificarNodo (String path) {
-        dbRef.child(path).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange (@NotNull DataSnapshot snapshot) {
-                if (!snapshot.exists()) {
-                    dbRef.child(path).setValue(0);
-                }
-            }
-            @Override
-            public void onCancelled (@NotNull DatabaseError error) {
-                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     public void registrarDatosBitacora(String path, String nodo, Bitacora datos){
 
         dbRef.child(path)

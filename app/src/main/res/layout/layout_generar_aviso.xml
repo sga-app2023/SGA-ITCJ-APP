@@ -83,19 +83,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <Button
-                android:id="@+id/btn_aviso_anterior"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:padding="15dp"
-                android:textAllCaps="false"
-                android:text="Mostrar aviso anterior"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:backgroundTint="@color/white" />
-
             <Button
                 android:id="@+id/btn_guardar_aviso"
                 android:layout_width="match_parent"

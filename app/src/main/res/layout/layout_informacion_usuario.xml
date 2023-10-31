@@ -46,6 +46,7 @@
                     android:focusableInTouchMode="false"
                     android:background="@color/white"
                     android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:hint="Nombre:" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -69,6 +70,7 @@
                     android:background="@color/white"
                     android:inputType="text"
                     android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:hint="Apellido paterno:" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -92,6 +94,7 @@
                     android:background="@color/white"
                     android:inputType="text"
                     android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:hint="Apellido materno:" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +118,8 @@
                     android:hint="Área trabajo:"
                     android:inputType="text"
                     android:background="@color/white"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +143,8 @@
                     android:hint="Carrera:"
                     android:inputType="text"
                     android:background="@color/white"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,7 +167,8 @@
                     android:focusableInTouchMode="false"
                     android:hint="Matricula:"
                     android:background="@color/white"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +190,8 @@
                     android:focusableInTouchMode="false"
                     android:hint="Correo institucional:"
                     android:background="@color/white"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,7 +237,8 @@
                             android:focusableInTouchMode="false"
                             android:hint="Inicio:"
                             android:background="@color/white"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="18dp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -253,7 +261,8 @@
                             android:focusableInTouchMode="false"
                             android:hint="Final:"
                             android:background="@color/white"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="18dp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -261,6 +270,7 @@
 
             </LinearLayout>
 
+            <!--
             <Button
                 android:id="@+id/btn_cerrar_sesion"
                 android:layout_width="match_parent"
@@ -271,6 +281,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:backgroundTint="@color/red_600" />
+                -->
 
         </LinearLayout>
 
