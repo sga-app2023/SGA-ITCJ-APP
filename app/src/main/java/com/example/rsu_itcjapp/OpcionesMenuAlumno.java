@@ -569,11 +569,17 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
     private void mostrarDatosCuenta() {
 
-        String fechaInicio = alumno.getResidenciasInicio().get("dia")+"/"
-                +alumno.getResidenciasInicio().get("mes")+"/"+alumno.getResidenciasInicio().get("anho");
+        if (alumno.getResidenciasInicio() != null) {
+            String fechaInicio = alumno.getResidenciasInicio().get("dia")+"/"
+                    +alumno.getResidenciasInicio().get("mes")+"/"+alumno.getResidenciasInicio().get("anho");
+            ((TextInputEditText) findViewById(R.id.txt_fecha_inicio_inf)).setText(fechaInicio);
+        }
 
-        String fechaFin = alumno.getResidenciasFin().get("dia")+"/"
-                +alumno.getResidenciasFin().get("mes")+"/"+alumno.getResidenciasFin().get("anho");
+        if (alumno.getResidenciasFin() != null) {
+            String fechaFin = alumno.getResidenciasFin().get("dia")+"/"
+                    +alumno.getResidenciasFin().get("mes")+"/"+alumno.getResidenciasFin().get("anho");
+            ((TextInputEditText) findViewById(R.id.txt_fecha_final_inf)).setText(fechaFin);
+        }
 
         TextInputEditText txtNombreUsuario = (TextInputEditText) findViewById(R.id.txt_nombre_inf);
         TextInputEditText txtApellidoPaterno = (TextInputEditText) findViewById(R.id.txt_apellidoPaterno_inf);
@@ -582,8 +588,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         TextInputEditText txtCarrera = (TextInputEditText) findViewById(R.id.txt_carrera_inf);
         TextInputEditText txtMatricula = (TextInputEditText) findViewById(R.id.txt_matricula_inf);
         TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.txt_correo_inf);
-        TextInputEditText txtFechaInicio = (TextInputEditText) findViewById(R.id.txt_fecha_inicio_inf);
-        TextInputEditText txtFechaFinal = (TextInputEditText) findViewById(R.id.txt_fecha_final_inf);
 
         txtNombreUsuario.setText(alumno.getNombre());
         txtApellidoPaterno.setText(alumno.getApellidoPaterno());
@@ -592,9 +596,5 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         txtCarrera.setText(alumno.getCarrera());
         txtMatricula.setText(String.valueOf(alumno.getMatricula()));
         txtCorreo.setText(databaseSGA.getUser().getEmail());
-
-        txtFechaInicio.setText(fechaInicio);
-        txtFechaFinal.setText(fechaFin);
-
     }
 }

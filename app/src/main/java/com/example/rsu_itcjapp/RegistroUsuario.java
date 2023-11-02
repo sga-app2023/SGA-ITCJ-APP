@@ -3,6 +3,7 @@ package com.example.rsu_itcjapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -101,25 +102,25 @@ public class RegistroUsuario extends AppCompatActivity {
 
                 ocultarTeclado(view);
 
-                if(nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || area.isEmpty()
+                if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || area.isEmpty()
                         || carrera.isEmpty() || correo.isEmpty() || password.isEmpty()){
                     Toast.makeText(RegistroUsuario.this, "Campos vacios", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (fechaInicio.isEmpty() || fechaFin.isEmpty()) {
-                    Toast.makeText(RegistroUsuario.this, "Falta capturar fecha inicio/fin.",
-                            Toast.LENGTH_SHORT).show();
+                if (!pattern.matcher(correo).matches()) {
+                    txtCorreo.setError("Correo no válido");
                     return;
                 }
 
                 if (matricula.length() < 8) {
-                    txtMatricula.setError("Matricula incorrecta.");
+                    txtMatricula.setError("Matricula incorrecta");
                     return;
                 }
 
-                if (!pattern.matcher(correo).matches()) {
-                    txtCorreo.setError("Correo no válido.");
+                if (TextUtils.isEmpty(fechaInicio) || TextUtils.isEmpty(fechaFin)) {
+                    Toast.makeText(RegistroUsuario.this, "Falta capturar fecha inicio/fin",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
