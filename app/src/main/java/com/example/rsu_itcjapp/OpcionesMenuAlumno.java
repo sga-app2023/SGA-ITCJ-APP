@@ -585,8 +585,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         TextInputEditText txtFechaInicio = (TextInputEditText) findViewById(R.id.txt_fecha_inicio_inf);
         TextInputEditText txtFechaFinal = (TextInputEditText) findViewById(R.id.txt_fecha_final_inf);
 
-        //Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
-
         txtNombreUsuario.setText(alumno.getNombre());
         txtApellidoPaterno.setText(alumno.getApellidoPaterno());
         txtApellidoMaterno.setText(alumno.getApellidoMaterno());
@@ -597,23 +595,6 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
         txtFechaInicio.setText(fechaInicio);
         txtFechaFinal.setText(fechaFin);
-
-        /*
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                databaseSGA.getAuth().signOut();
-
-                Toast.makeText(OpcionesMenuAlumno.this,
-                            "Sesión finalizada.", Toast.LENGTH_SHORT).show();
-                Intent pantallaInicio = new Intent(OpcionesMenuAlumno.this,
-                            MainActivity.class);
-                startActivity(pantallaInicio);
-                finish();
-            }
-        });
-
-         */
 
     }
 }
