@@ -10,13 +10,8 @@ public class Alumno extends Usuario implements Serializable {
     private HashMap<String, String> residenciasInicio;
     private HashMap<String, String> residenciasFin;
 
-    public Alumno(){
+    public Alumno() {
 
-    }
-
-    public Alumno (String nombre, String apellidoPaterno, String apellidoMaterno, int matricula){
-        super(nombre, apellidoPaterno, apellidoMaterno);
-        this.matricula = matricula;
     }
 
     public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, String area, String tipo,

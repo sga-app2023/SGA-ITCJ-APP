@@ -15,12 +15,6 @@ public class Usuario implements Serializable {
 
     }
 
-    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno) {
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String area, String tipo) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
