@@ -2,7 +2,6 @@ package com.example.rsu_itcjapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -12,7 +11,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.rsu_itcjapp.datos.Alumno;
-import com.example.rsu_itcjapp.datos.Aviso;
 import com.example.rsu_itcjapp.db.DatabaseSGA;
 import com.example.rsu_itcjapp.datos.Usuario;
 import com.example.rsu_itcjapp.listView.DatosReporte;
@@ -77,7 +75,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
     }
 
     private void generarAviso() {
-        final String path = "aviso/0";
+        final String path = "aviso/";
 
         TextInputEditText txtTitulo = (TextInputEditText) findViewById(R.id.tie_titulo_aviso);
         TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.tie_correo_aviso);
@@ -92,12 +90,16 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                 String correo = txtCorreo.getText().toString().trim();
                 String info = txtInformacion.getText().toString().trim();
 
+                InputMethodManager inputMethodManager =
+                        (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                 if (tituloAviso.isEmpty()) {
                    txtTitulo.setError("Campo vacío");
                    return;
                 }
 
-                if(correo.isEmpty()) {
+                if (correo.isEmpty()) {
                     txtCorreo.setError("Campo vacío");
                     return;
                 }
@@ -107,17 +109,17 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                     return;
                 }
 
-                InputMethodManager inputMethodManager =
-                        (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                HashMap<String, String> aviso = new HashMap<>();
 
-                Aviso aviso = new Aviso(correo, info, tituloAviso);
+                aviso.put("correoDeContacto", correo);
+                aviso.put("informacion", info);
+                aviso.put("titulo", tituloAviso);
 
                 databaseSGA.getDbRef().child(path).setValue(aviso)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NotNull Task<Void> task) {
-                                if(task.isSuccessful()) {
+                                if (task.isSuccessful()) {
                                     Toast.makeText(OpcionesMenuCoord.this,
                                             "Aviso guardado correctamente.", Toast.LENGTH_SHORT).show();
                                 }
