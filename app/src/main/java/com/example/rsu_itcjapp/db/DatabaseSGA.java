@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.rsu_itcjapp.Constantes;
-import com.example.rsu_itcjapp.MenuUsuarios;
+import com.example.rsu_itcjapp.DatosSistema;
+import com.example.rsu_itcjapp.MenuActivity;
 import com.example.rsu_itcjapp.datos.Alumno;
 import com.example.rsu_itcjapp.datos.Bitacora;
 import com.example.rsu_itcjapp.datos.Usuario;
@@ -52,31 +52,29 @@ public class DatabaseSGA {
         return dbRef;
     }
 
-    public void obtenerUsuario(String usuario, String datosUsuario) {
+    public void obtenerUsuario() {
         final String userId = auth.getUid();
         if (userId == null) return;
 
-        dbRef.child(Constantes.USUARIOS)
+        dbRef.child(DatosSistema.USUARIOS)
              .child(userId)
              .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NotNull DataSnapshot snapshot) {
                         Usuario user = snapshot.getValue(Usuario.class);
                         if (user == null) return;
-
                         String tipo = user.getTipo();
 
-                        Intent menu = new Intent(context, MenuUsuarios.class);
-                        menu.putExtra(usuario, tipo);
-
-                        if (tipo.equals(Constantes.USUARIO_ALUMNO)) {
-                            menu.putExtra(datosUsuario, snapshot.getValue(Alumno.class));
-                        } else {
-                            menu.putExtra(datosUsuario, user);
+                        if (tipo.equals(DatosSistema.USUARIO_ALUMNO)) {
+                            DatosSistema.DatosUsuario.alumno = snapshot.getValue(Alumno.class);
+                        } else if(tipo.equals(DatosSistema.USUARIO_DOCENTE)) {
+                            DatosSistema.DatosUsuario.usuario = user;
                         }
+
+                        Intent menu = new Intent(context, MenuActivity.class);
                         context.startActivity(menu);
-                        Toast.makeText(context, "Bienvenido " + user.getNombre()
-                                + " " + user.getApellidoPaterno(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Bienvenido", Toast.LENGTH_SHORT).show();
+
                     }
                     @Override
                     public void onCancelled(@NotNull DatabaseError error) {
@@ -86,7 +84,7 @@ public class DatabaseSGA {
     }
 
     public void registrarCuenta(Usuario usuario, String userId) {
-        dbRef.child(Constantes.USUARIOS)
+        dbRef.child(DatosSistema.USUARIOS)
              .child(userId)
              .setValue(usuario)
              .addOnCompleteListener(new OnCompleteListener<Void>() {

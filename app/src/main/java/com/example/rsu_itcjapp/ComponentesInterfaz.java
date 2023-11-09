@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.text.format.DateFormat;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
@@ -14,7 +12,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class Interfaz {
+public class ComponentesInterfaz {
 
     public static HashMap<String, String> setDatePicker(TextInputEditText textView, Context context){
         HashMap<String, String> fecha = new HashMap<>();

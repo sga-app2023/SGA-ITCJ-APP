@@ -12,12 +12,12 @@ import com.example.rsu_itcjapp.R;
 
 import java.util.ArrayList;
 
-public class ListaMenuAdapter extends ArrayAdapter<DatosListaMenu> implements View.OnClickListener {
+public class MenuAdapter extends ArrayAdapter<DatosItemMenu> implements View.OnClickListener {
 
-    private ArrayList<DatosListaMenu> rowItems;
+    private ArrayList<DatosItemMenu> rowItems;
     private Context context;
 
-    public ListaMenuAdapter(Context context, ArrayList<DatosListaMenu> datos){
+    public MenuAdapter(Context context, ArrayList<DatosItemMenu> datos){
         super(context, R.layout.row_item, datos);
         this.rowItems = datos;
         this.context = context;
@@ -35,7 +35,7 @@ public class ListaMenuAdapter extends ArrayAdapter<DatosListaMenu> implements Vi
 
     @Override
     public View getView(int posicion, View view, ViewGroup parent){
-        DatosListaMenu item = getItem(posicion);
+        DatosItemMenu item = getItem(posicion);
         ViewHolder viewHolder;
 
         if (view == null) {

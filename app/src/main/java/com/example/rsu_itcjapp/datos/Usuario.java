@@ -1,7 +1,6 @@
 package com.example.rsu_itcjapp.datos;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class Usuario implements Serializable {
 

@@ -11,15 +11,15 @@ import com.example.rsu_itcjapp.R;
 
 import java.util.ArrayList;
 
-public class ReportesAdapter extends ArrayAdapter<DatosReporte> implements View.OnClickListener{
+public class ReportesAdapter extends ArrayAdapter<DatosItemReporte> implements View.OnClickListener{
 
     private Context mContext;
-    private ArrayList<DatosReporte> datosReporte;
+    private ArrayList<DatosItemReporte> datosItemReporte;
 
-    public ReportesAdapter(Context context, ArrayList<DatosReporte> datos) {
+    public ReportesAdapter(Context context, ArrayList<DatosItemReporte> datos) {
         super(context, R.layout.row_item_reporte, datos);
         this.mContext = context;
-        this.datosReporte = datos;
+        this.datosItemReporte = datos;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ReportesAdapter extends ArrayAdapter<DatosReporte> implements View.
 
     }
 
-    public static class ViewHolder{
+    public static class ViewHolder {
         TextView twNombre;
         TextView twMatricula;
         TextView twArea;
@@ -35,11 +35,11 @@ public class ReportesAdapter extends ArrayAdapter<DatosReporte> implements View.
     }
 
     @Override
-    public View getView(int posicion, View view, ViewGroup parent){
-        DatosReporte item = getItem(posicion);
+    public View getView (int posicion, View view, ViewGroup parent) {
+        DatosItemReporte item = getItem(posicion);
         ReportesAdapter.ViewHolder viewHolder;
 
-        if(view == null){
+        if (view == null) {
             viewHolder = new ReportesAdapter.ViewHolder();
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             view = layoutInflater.inflate(R.layout.row_item_reporte, parent, false);

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.rsu_itcjapp.datos.Alumno;
 import com.example.rsu_itcjapp.db.DatabaseSGA;
 import com.example.rsu_itcjapp.datos.Usuario;
-import com.example.rsu_itcjapp.listView.DatosReporte;
+import com.example.rsu_itcjapp.listView.DatosItemReporte;
 import com.example.rsu_itcjapp.listView.ReportesAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,13 +32,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-public class OpcionesMenuCoord extends AppCompatActivity {
+public class OpcionesCoordActivity extends AppCompatActivity {
 
     private ReportesAdapter adapterReporteBim;
-    private ArrayList<DatosReporte> datosReportesBim;
+    private ArrayList<DatosItemReporte> datosItemReportesBim;
 
     private DatabaseSGA databaseSGA;
-    private Usuario docente;
     private Calendar fechaActual;
     private HashMap<String, String> fechaServicio;
     private SimpleDateFormat formatoFecha;
@@ -46,12 +45,11 @@ public class OpcionesMenuCoord extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getIntent().getExtras();
-        docente = (Usuario) bundle.get(Constantes.USUARIO_DOCENTE);
-        int layoutSeleccionado = (Integer) bundle.get(Constantes.LAYOUT);
+
+        int layoutSeleccionado = (Integer) getIntent().getExtras().get(DatosSistema.LAYOUT);
         setContentView(layoutSeleccionado);
 
-        databaseSGA = new DatabaseSGA(OpcionesMenuCoord.this);
+        databaseSGA = new DatabaseSGA(OpcionesCoordActivity.this);
         fechaServicio = new HashMap<>();
 
         formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,13 +60,13 @@ public class OpcionesMenuCoord extends AppCompatActivity {
 
     private void seleccionarLayout(int layout){
         switch(layout) {
-            case Constantes.GENERARAVISO:
+            case DatosSistema.Layouts.GENERARAVISO:
                 generarAviso();
                 break;
-            case Constantes.ALUMNOSSERVICIO:
+            case DatosSistema.Layouts.ALUMNOSSERVICIO:
                 mostrarReporteBimestral();
                 break;
-            case Constantes.VERPERFIL:
+            case DatosSistema.Layouts.VERPERFIL:
                 mostrarDatosCuenta();
                 break;
         }
@@ -120,7 +118,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                             @Override
                             public void onComplete(@NotNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(OpcionesMenuCoord.this,
+                                    Toast.makeText(OpcionesCoordActivity.this,
                                             "Aviso guardado correctamente.", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -128,7 +126,7 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NotNull Exception e) {
-                                Toast.makeText(OpcionesMenuCoord.this, e.getMessage(),
+                                Toast.makeText(OpcionesCoordActivity.this, e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -172,18 +170,18 @@ public class OpcionesMenuCoord extends AppCompatActivity {
 
         ListView listReportesBim = (ListView) findViewById(R.id.list_reportes_bimestral);
 
-        datosReportesBim = new ArrayList<>();
+        datosItemReportesBim = new ArrayList<>();
 
-        databaseSGA.getDbRef().child(Constantes.USUARIOS)
+        databaseSGA.getDbRef().child(DatosSistema.USUARIOS)
                 .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NotNull DataSnapshot snapshot) {
                 Iterable<DataSnapshot> snapshotIterable = snapshot.getChildren();
-                datosReportesBim.clear();
+                datosItemReportesBim.clear();
                 for (DataSnapshot dataSnapshot : snapshotIterable) {
                     Usuario usuario = dataSnapshot.getValue(Usuario.class);
                     if(usuario != null
-                            && usuario.getTipo().equals(Constantes.USUARIO_ALUMNO)) {
+                            && usuario.getTipo().equals(DatosSistema.USUARIO_ALUMNO)) {
 
                         Alumno alumno = dataSnapshot.getValue(Alumno.class);
                         fechaServicio = alumno.getResidenciasInicio();
@@ -196,11 +194,11 @@ public class OpcionesMenuCoord extends AppCompatActivity {
                                 String nombreCompleto = alumno.getNombre() + " " +
                                         alumno.getApellidoPaterno() + " " + alumno.getApellidoMaterno();
 
-                                DatosReporte datosReporte = new DatosReporte(nombreCompleto,
+                                DatosItemReporte datosItemReporte = new DatosItemReporte(nombreCompleto,
                                         String.valueOf(alumno.getMatricula()), alumno.getArea(),
                                         reporte + rep);
 
-                                datosReportesBim.add(datosReporte);
+                                datosItemReportesBim.add(datosItemReporte);
                             }
                         }
                     }
@@ -210,50 +208,25 @@ public class OpcionesMenuCoord extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NotNull DatabaseError error) {
-                Toast.makeText(OpcionesMenuCoord.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpcionesCoordActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        adapterReporteBim = new ReportesAdapter(getApplicationContext(), datosReportesBim);
+        adapterReporteBim = new ReportesAdapter(getApplicationContext(), datosItemReportesBim);
         listReportesBim.setAdapter(adapterReporteBim);
     }
 
     private void mostrarDatosCuenta(){
+        Usuario docente = DatosSistema.DatosUsuario.usuario;
 
-        TextInputLayout tilCarrera = (TextInputLayout) findViewById(R.id.til_carrera_inf);
-        TextInputLayout tilMatricula = (TextInputLayout) findViewById(R.id.til_matricula_inf);
-        LinearLayout layoutFechas = (LinearLayout) findViewById(R.id.layout_fechas);
+        ((TextInputLayout) findViewById(R.id.til_carrera_inf)).setVisibility(View.GONE);
+        ((TextInputLayout) findViewById(R.id.til_matricula_inf)).setVisibility(View.GONE);
+        ((LinearLayout) findViewById(R.id.layout_fechas)).setVisibility(View.GONE);
 
-        TextInputEditText txtNombreUsuario = (TextInputEditText) findViewById(R.id.txt_nombre_inf);
-        TextInputEditText txtApellidoPaterno = (TextInputEditText) findViewById(R.id.txt_apellidoPaterno_inf);
-        TextInputEditText txtApellidoMaterno = (TextInputEditText) findViewById(R.id.txt_apellidoMaterno_inf);
-        TextInputEditText txtArea = (TextInputEditText) findViewById(R.id.txt_area_inf);
-        TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.txt_correo_inf);
-
-        //Button btnCerrarSesion = (Button) findViewById(R.id.btn_cerrar_sesion);
-
-        tilCarrera.setVisibility(View.GONE);
-        tilMatricula.setVisibility(View.GONE);
-        layoutFechas.setVisibility(View.GONE);
-
-        txtNombreUsuario.setText(docente.getNombre());
-        txtApellidoPaterno.setText(docente.getApellidoPaterno());
-        txtApellidoMaterno.setText(docente.getApellidoMaterno());
-        txtArea.setText(docente.getArea());
-        txtCorreo.setText(databaseSGA.getUser().getEmail());
-    /*
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               databaseSGA.getAuth().signOut();
-               Toast.makeText(OpcionesMenuCoord.this,
-                       "Sesión finalizada.", Toast.LENGTH_SHORT).show();
-               Intent pantallaInicio = new Intent(OpcionesMenuCoord.this, MainActivity.class);
-               startActivity(pantallaInicio);
-               finish();
-           }
-        });
-
-    */
+        ((TextInputEditText) findViewById(R.id.txt_nombre_inf)).setText(docente.getNombre());
+        ((TextInputEditText) findViewById(R.id.txt_apellidoPaterno_inf)).setText(docente.getApellidoPaterno());
+        ((TextInputEditText) findViewById(R.id.txt_apellidoMaterno_inf)).setText(docente.getApellidoMaterno());
+        ((TextInputEditText) findViewById(R.id.txt_area_inf)).setText(docente.getArea());
+        ((TextInputEditText) findViewById(R.id.txt_correo_inf)).setText(databaseSGA.getUser().getEmail());
 
     }
 

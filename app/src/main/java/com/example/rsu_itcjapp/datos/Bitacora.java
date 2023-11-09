@@ -4,9 +4,10 @@ import java.util.HashMap;
 
 public class Bitacora {
 
-    private HashMap<String, String> fechaIngreso;
-    private String idUsuario;
+
     private int matriculaUsuario;
+    private String idUsuario;
+    private HashMap<String, String> fechaIngreso;
 
     public Bitacora() {
 

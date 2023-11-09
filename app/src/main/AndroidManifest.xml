@@ -12,22 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RSU_ITCJAPP">
         <activity
-            android:name=".OpcionesMenuCoord"
+            android:name="com.example.rsu_itcjapp.OpcionesCoordActivity"
             android:exported="false" />
         <activity
-            android:name=".OpcionesMenuAlumno"
+            android:name="com.example.rsu_itcjapp.OpcionesAlumnoActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuUsuarios"
+            android:name="com.example.rsu_itcjapp.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroUsuario"
+            android:name="com.example.rsu_itcjapp.RegistroUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginUsuarios"
+            android:name="com.example.rsu_itcjapp.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.rsu_itcjapp.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

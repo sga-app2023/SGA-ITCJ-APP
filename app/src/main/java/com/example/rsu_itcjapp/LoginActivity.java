@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
 
-public class LoginUsuarios extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private DatabaseSGA databaseSGA;
 
@@ -33,14 +33,14 @@ public class LoginUsuarios extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_usuario);
+        setContentView(R.layout.activity_login);
 
         // Tipo de usuario
-        usuario = (String) getIntent().getExtras().get(Constantes.USUARIO);
+        usuario = (String) getIntent().getExtras().get(DatosSistema.USUARIO);
 
         // Instancia de firebase
 
-        databaseSGA = new DatabaseSGA(LoginUsuarios.this);
+        databaseSGA = new DatabaseSGA(LoginActivity.this);
 
         //Componentes de interfaz
 
@@ -51,16 +51,16 @@ public class LoginUsuarios extends AppCompatActivity {
 
         // Ocultar botón de registro para usuarios tipo coordinador
 
-        if (usuario.equals(Constantes.USUARIO_DOCENTE)
-                || usuario.equals(Constantes.USUARIO_TRABAJADOR)) {
+        if (usuario.equals(DatosSistema.USUARIO_DOCENTE)
+                || usuario.equals(DatosSistema.USUARIO_TRABAJADOR)) {
             btnRegistrarAlumno.setVisibility(View.INVISIBLE);
         }
 
         btnRegistrarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentRegistro = new Intent(LoginUsuarios.this, RegistroUsuario.class);
-                intentRegistro.putExtra(Constantes.USUARIO, usuario);
+                Intent intentRegistro = new Intent(LoginActivity.this, RegistroUsuarioActivity.class);
+                intentRegistro.putExtra(DatosSistema.USUARIO, usuario);
                 startActivity(intentRegistro);
             }
         });
@@ -106,12 +106,12 @@ public class LoginUsuarios extends AppCompatActivity {
 
     private void iniciarSesion(String correo, String password){
         databaseSGA.getAuth().signInWithEmailAndPassword(correo, password)
-             .addOnCompleteListener(LoginUsuarios.this,
+             .addOnCompleteListener(LoginActivity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NotNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            databaseSGA.obtenerUsuario(Constantes.USUARIO, Constantes.DATOS_USUARIO);
+                            databaseSGA.obtenerUsuario();
                             finish();
                             return;
                         }
@@ -119,7 +119,7 @@ public class LoginUsuarios extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                     }
             })
-            .addOnFailureListener(LoginUsuarios.this, new OnFailureListener() {
+            .addOnFailureListener(LoginActivity.this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NotNull Exception e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(),

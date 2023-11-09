@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class RegistroUsuario extends AppCompatActivity {
+public class RegistroUsuarioActivity extends AppCompatActivity {
 
     private DatabaseSGA databaseSGA;
     private String usuario = "";
@@ -37,9 +37,9 @@ public class RegistroUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
 
-        usuario = (String) getIntent().getExtras().get(Constantes.USUARIO);
+        usuario = (String) getIntent().getExtras().get(DatosSistema.USUARIO);
 
-        databaseSGA = new DatabaseSGA(RegistroUsuario.this);
+        databaseSGA = new DatabaseSGA(RegistroUsuarioActivity.this);
         residenciasInicio = new HashMap<>();
         residenciasFin = new HashMap<>();
 
@@ -70,7 +70,7 @@ public class RegistroUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 residenciasInicio =
-                        Interfaz.setDatePicker(txtFechaInicio, RegistroUsuario.this);
+                        ComponentesInterfaz.setDatePicker(txtFechaInicio, RegistroUsuarioActivity.this);
             }
         });
 
@@ -78,7 +78,7 @@ public class RegistroUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 residenciasFin =
-                        Interfaz.setDatePicker(txtFechaFinal, RegistroUsuario.this);
+                        ComponentesInterfaz.setDatePicker(txtFechaFinal, RegistroUsuarioActivity.this);
             }
         });
 
@@ -104,7 +104,7 @@ public class RegistroUsuario extends AppCompatActivity {
 
                 if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || area.isEmpty()
                         || carrera.isEmpty() || correo.isEmpty() || password.isEmpty()){
-                    Toast.makeText(RegistroUsuario.this, "Campos vacios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistroUsuarioActivity.this, "Campos vacios", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -119,7 +119,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 }
 
                 if (TextUtils.isEmpty(fechaInicio) || TextUtils.isEmpty(fechaFin)) {
-                    Toast.makeText(RegistroUsuario.this, "Falta capturar fecha inicio/fin",
+                    Toast.makeText(RegistroUsuarioActivity.this, "Falta capturar fecha inicio/fin",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -153,14 +153,14 @@ public class RegistroUsuario extends AppCompatActivity {
     private void registrarUsuario(Alumno alumno, String correo, String password) {
 
         databaseSGA.getAuth().createUserWithEmailAndPassword(correo, password).
-                addOnCompleteListener(RegistroUsuario.this,
+                addOnCompleteListener(RegistroUsuarioActivity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             String userId = task.getResult().getUser().getUid();
                             databaseSGA.registrarCuenta(alumno, userId);
-                            databaseSGA.obtenerUsuario(Constantes.USUARIO, Constantes.DATOS_USUARIO);
+                            databaseSGA.obtenerUsuario();
                             finish();
                             return;
                         }

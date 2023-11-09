@@ -1,13 +1,13 @@
 package com.example.rsu_itcjapp.listView;
 
-public class DatosReporte {
+public class DatosItemReporte {
 
     private String nombreCompleto = "";
     private String matricula = "";
     private String areaTrabajo = "";
     private String reporte = "";
 
-    public DatosReporte(String nombreCompleto, String matricula, String areaTrabajo, String reporte) {
+    public DatosItemReporte(String nombreCompleto, String matricula, String areaTrabajo, String reporte) {
         this.nombreCompleto = nombreCompleto;
         this.matricula = matricula;
         this.areaTrabajo = areaTrabajo;

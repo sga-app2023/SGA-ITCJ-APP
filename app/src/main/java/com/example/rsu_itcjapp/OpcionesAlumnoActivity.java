@@ -28,11 +28,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class OpcionesMenuAlumno extends AppCompatActivity {
+public class OpcionesAlumnoActivity extends AppCompatActivity {
 
-    private Alumno alumno;
     private String idUsuario = "";
     private Integer codigosPeligrosidad = 0;
+    private Integer matricula = DatosSistema.DatosUsuario.alumno.getMatricula();
 
     private HashMap<String, String> fechaIngreso;
     private HashMap<String, String> fechaSalida;
@@ -44,14 +44,13 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle bundle = getIntent().getExtras();
-        int layoutRegistro = (Integer) bundle.get(Constantes.LAYOUT);
-        alumno = (Alumno) bundle.getSerializable(Constantes.USUARIO_ALUMNO);
-
+        int layoutRegistro = (Integer) getIntent().getExtras().get(DatosSistema.LAYOUT);
         setContentView(layoutRegistro);
 
-        databaseSGA = new DatabaseSGA(OpcionesMenuAlumno.this);
+        databaseSGA = new DatabaseSGA(OpcionesAlumnoActivity.this);
         idUsuario = databaseSGA.getUser().getUid();
+
+        if (matricula == null) matricula = 0;
 
         fechaIngreso = new HashMap<>();
         fechaSalida = new HashMap<>();
@@ -65,22 +64,22 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
     private void seleccionarComponentes(int opcionSeleccionada) {
         switch(opcionSeleccionada) {
-            case Constantes.RECICLAJE:
+            case DatosSistema.Layouts.RECICLAJE:
                 registrarDatosReciclaje();
                 break;
-            case Constantes.MARCADORESPILAS:
+            case DatosSistema.Layouts.MARCADORESPILAS:
                 registrarDatosMarcadoresPilas();
                 break;
-            case Constantes.RESIDUOSPELIGROSOS:
+            case DatosSistema.Layouts.RESIDUOSPELIGROSOS:
                 registrarDatosResiduosPeligrosos();
                 break;
-            case Constantes.SISTEMADERIEGO:
+            case DatosSistema.Layouts.SISTEMADERIEGO:
                 registrarDatosSistemaRiego();
                 break;
-            case Constantes.ENVIARCORREO:
+            case DatosSistema.Layouts.ENVIARCORREO:
                 enviarCorreo();
                 break;
-            case Constantes.VERPERFIL:
+            case DatosSistema.Layouts.VERPERFIL:
                 mostrarDatosCuenta();
                 break;
         }
@@ -176,7 +175,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
         txtFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fechaIngreso = Interfaz.setDatePicker(txtFecha, OpcionesMenuAlumno.this);
+                fechaIngreso = ComponentesInterfaz.setDatePicker(txtFecha, OpcionesAlumnoActivity.this);
             }
         });
 
@@ -192,7 +191,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 ocultarTeclado(view);
 
                 if (cantidadTapas.isEmpty() || cantidadBotellas.isEmpty() || botesAluminio.isEmpty()) {
-                    Toast.makeText(OpcionesMenuAlumno.this,
+                    Toast.makeText(OpcionesAlumnoActivity.this,
                             "Campo vacío.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -207,7 +206,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 int botes = Integer.parseInt(botesAluminio);
 
                 Reciclaje reciclaje =
-                        new Reciclaje (alumno.getMatricula(), fechaIngreso, tapas, botellas, botes, idUsuario);
+                        new Reciclaje (matricula, fechaIngreso, tapas, botellas, botes, idUsuario);
                 databaseSGA.registrarDatosBitacora(path, nodo, reciclaje);
 
                 txtTapasRec.setText("");
@@ -244,7 +243,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fechaIngreso =
-                        Interfaz.setDatePicker(txtFecha, OpcionesMenuAlumno.this);
+                        ComponentesInterfaz.setDatePicker(txtFecha, OpcionesAlumnoActivity.this);
             }
         });
 
@@ -263,7 +262,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                ocultarTeclado(view);
 
                if (categoriaMpt.isEmpty() || departamento.isEmpty()) {
-                   Toast.makeText(OpcionesMenuAlumno.this, "Campo vacío",
+                   Toast.makeText(OpcionesAlumnoActivity.this, "Campo vacío",
                            Toast.LENGTH_SHORT).show();
                    return;
                }
@@ -281,7 +280,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                int cantidadMpt = Integer.parseInt(cantidad);
 
                MarcadoresPilas marcadoresPilas =
-                       new MarcadoresPilas(alumno.getMatricula(), fechaIngreso, cantidadMpt, departamento, idUsuario);
+                       new MarcadoresPilas(matricula, fechaIngreso, cantidadMpt, departamento, idUsuario);
                databaseSGA.registrarDatosBitacora(path, nodo, marcadoresPilas);
 
                txtCantidad.setText("");
@@ -334,7 +333,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fechaIngreso =
-                        Interfaz.setDatePicker(txtFechaIngreso, OpcionesMenuAlumno.this);
+                        ComponentesInterfaz.setDatePicker(txtFechaIngreso, OpcionesAlumnoActivity.this);
             }
         });
 
@@ -342,7 +341,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fechaSalida =
-                        Interfaz.setDatePicker(txtFechaSalida, OpcionesMenuAlumno.this);
+                        ComponentesInterfaz.setDatePicker(txtFechaSalida, OpcionesAlumnoActivity.this);
             }
         });
 
@@ -380,7 +379,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 int numAutorizacion = 0;
 
                 if(cantidadResiduoKg.isEmpty() || nombreResiduo.isEmpty()) {
-                    Toast.makeText(OpcionesMenuAlumno.this,
+                    Toast.makeText(OpcionesAlumnoActivity.this,
                             "Campo vacío", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -394,7 +393,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                 }
 
                 if(codigosPeligrosidad < 1) {
-                    Toast.makeText(OpcionesMenuAlumno.this,
+                    Toast.makeText(OpcionesAlumnoActivity.this,
                             "Falta seleccionar código(s) de peligrosidad.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -403,7 +402,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
                 ResiduosPeligrosos residuosPeligrosos =
                         new ResiduosPeligrosos(fechaIngreso, idUsuario, prestadorServicio, nombreResiduo,
-                                faseManejo, alumno.getMatricula(), residuoKg, fechaSalida, peligrosidad,
+                                faseManejo, matricula, residuoKg, fechaSalida, peligrosidad,
                                 numManifiesto, numAutorizacion);
 
                 databaseSGA.registrarDatosBitacora(path, nodo, residuosPeligrosos);
@@ -449,14 +448,14 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fechaIngreso =
-                        Interfaz.setDatePicker(txtFechaRiego, OpcionesMenuAlumno.this);
+                        ComponentesInterfaz.setDatePicker(txtFechaRiego, OpcionesAlumnoActivity.this);
             }
         });
 
         txtHoraInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Interfaz.setTimePicker(txtHoraInicio, OpcionesMenuAlumno.this);
+                ComponentesInterfaz.setTimePicker(txtHoraInicio, OpcionesAlumnoActivity.this);
             }
         });
 
@@ -476,7 +475,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(area) || TextUtils.isEmpty(tipoRiego) || TextUtils.isEmpty(turno)
                         || TextUtils.isEmpty(horaRiego) || TextUtils.isEmpty(duracion)) {
-                            Toast.makeText(OpcionesMenuAlumno.this, "Campo vacío.",
+                            Toast.makeText(OpcionesAlumnoActivity.this, "Campo vacío.",
                                 Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -488,7 +487,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
                 int duracionRiego = Integer.parseInt(duracion);
 
-                SistemaRiego sistemaRiego = new SistemaRiego(alumno.getMatricula(), fechaIngreso, area, tipoRiego,
+                SistemaRiego sistemaRiego = new SistemaRiego(matricula, fechaIngreso, area, tipoRiego,
                                             turno, horaRiego, duracionRiego, observaciones, idUsuario);
 
                 databaseSGA.registrarDatosBitacora(path, nodo, sistemaRiego);
@@ -513,7 +512,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
 
         Button btnEnviarCorreo = (Button) findViewById(R.id.btn_enviar_correo);
 
-        txtDestinatario.setText(Constantes.CORREO_DIR);
+        txtDestinatario.setText(DatosSistema.CORREO_DIR);
 
         btnEnviarCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -556,7 +555,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
                     startActivity(Intent.createChooser(correo, "Enviar correo"));
 
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(OpcionesMenuAlumno.this, e.getMessage(),
+                    Toast.makeText(OpcionesAlumnoActivity.this, e.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -568,6 +567,7 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
     }
 
     private void mostrarDatosCuenta() {
+        Alumno alumno = DatosSistema.DatosUsuario.alumno;
 
         if (alumno.getResidenciasInicio() != null) {
             String fechaInicio = alumno.getResidenciasInicio().get("dia")+"/"
@@ -581,20 +581,12 @@ public class OpcionesMenuAlumno extends AppCompatActivity {
             ((TextInputEditText) findViewById(R.id.txt_fecha_final_inf)).setText(fechaFin);
         }
 
-        TextInputEditText txtNombreUsuario = (TextInputEditText) findViewById(R.id.txt_nombre_inf);
-        TextInputEditText txtApellidoPaterno = (TextInputEditText) findViewById(R.id.txt_apellidoPaterno_inf);
-        TextInputEditText txtApellidoMaterno = (TextInputEditText) findViewById(R.id.txt_apellidoMaterno_inf);
-        TextInputEditText txtArea = (TextInputEditText) findViewById(R.id.txt_area_inf);
-        TextInputEditText txtCarrera = (TextInputEditText) findViewById(R.id.txt_carrera_inf);
-        TextInputEditText txtMatricula = (TextInputEditText) findViewById(R.id.txt_matricula_inf);
-        TextInputEditText txtCorreo = (TextInputEditText) findViewById(R.id.txt_correo_inf);
-
-        txtNombreUsuario.setText(alumno.getNombre());
-        txtApellidoPaterno.setText(alumno.getApellidoPaterno());
-        txtApellidoMaterno.setText(alumno.getApellidoMaterno());
-        txtArea.setText(alumno.getArea());
-        txtCarrera.setText(alumno.getCarrera());
-        txtMatricula.setText(String.valueOf(alumno.getMatricula()));
-        txtCorreo.setText(databaseSGA.getUser().getEmail());
+        ((TextInputEditText) findViewById(R.id.txt_nombre_inf)).setText(alumno.getNombre());
+        ((TextInputEditText) findViewById(R.id.txt_apellidoPaterno_inf)).setText(alumno.getApellidoPaterno());
+        ((TextInputEditText) findViewById(R.id.txt_apellidoMaterno_inf)).setText(alumno.getApellidoMaterno());
+        ((TextInputEditText) findViewById(R.id.txt_area_inf)).setText(alumno.getArea());
+        ((TextInputEditText) findViewById(R.id.txt_carrera_inf)).setText(alumno.getCarrera());
+        ((TextInputEditText) findViewById(R.id.txt_matricula_inf)).setText(String.valueOf(alumno.getMatricula()));
+        ((TextInputEditText) findViewById(R.id.txt_correo_inf)).setText(databaseSGA.getUser().getEmail());
     }
 }
