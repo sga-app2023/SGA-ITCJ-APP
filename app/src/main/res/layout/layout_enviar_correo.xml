@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:textColorHint="@color/black"
-            app:hintTextAppearance="@style/hintText"
-            >
+            app:hintTextAppearance="@style/hintText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tie_correo_destinatario"

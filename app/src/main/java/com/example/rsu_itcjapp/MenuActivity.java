@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rsu_itcjapp.datos.Alumno;
 import com.example.rsu_itcjapp.db.DatabaseSGA;
 import com.example.rsu_itcjapp.listView.DatosItemMenu;
 import com.example.rsu_itcjapp.listView.MenuAdapter;

@@ -37,7 +37,6 @@ public class DatosSistema {
 
 
     public static class DatosUsuario {
-
         public static Usuario usuario = null;
         public static Alumno alumno = null;
     }
