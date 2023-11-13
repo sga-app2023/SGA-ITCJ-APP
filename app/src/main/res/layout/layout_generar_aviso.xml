@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintVertical_bias="0.45">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,16 +33,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:textColorHint="@color/black"
-                app:hintTextAppearance="@style/hintText"
-                >
+                app:hintTextAppearance="@style/hintText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_titulo_aviso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:hint="Título del aviso:" />
+                    android:hint="Título del aviso:"
+                    android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,16 +51,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:textColorHint="@color/black"
-                app:hintTextAppearance="@style/hintText"
-                >
+                app:hintTextAppearance="@style/hintText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_correo_aviso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:hint="Correo de contácto:" />
+                    android:hint="Correo de contácto:"
+                    android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,16 +68,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:textColorHint="@color/black"
-                app:hintTextAppearance="@style/hintText"
-                >
+                app:hintTextAppearance="@style/hintText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_informacion_aviso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:hint="Información:" />
+                    android:hint="Información:"
+                    android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,8 +86,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="15dp"
-                android:textAllCaps="false"
                 android:text="@string/btn_guardar_cambios"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:backgroundTint="@color/red_600" />

@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 public class OpcionesAlumnoActivity extends AppCompatActivity {
 
     private String idUsuario = "";
-    private Integer codigosPeligrosidad = 0;
+    private int codigosPeligrosidad = 0;
     private Integer matricula = DatosSistema.DatosUsuario.alumno.getMatricula();
 
     private HashMap<String, String> fechaIngreso;
@@ -62,8 +62,8 @@ public class OpcionesAlumnoActivity extends AppCompatActivity {
         seleccionarComponentes(layoutRegistro);
     }
 
-    private void seleccionarComponentes(int opcionSeleccionada) {
-        switch(opcionSeleccionada) {
+    private void seleccionarComponentes(int layoutSeleccionado) {
+        switch(layoutSeleccionado) {
             case DatosSistema.Layouts.RECICLAJE:
                 registrarDatosReciclaje();
                 break;
@@ -196,7 +196,7 @@ public class OpcionesAlumnoActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(fecha.isEmpty()) {
+                if (fecha.isEmpty()) {
                     txtFecha.setError("Campo vacío");
                     return;
                 }

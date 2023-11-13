@@ -103,7 +103,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                 ocultarTeclado(view);
 
                 if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || area.isEmpty()
-                        || carrera.isEmpty() || correo.isEmpty() || password.isEmpty()){
+                        || carrera.isEmpty() || correo.isEmpty() || password.isEmpty()) {
                     Toast.makeText(RegistroUsuarioActivity.this, "Campos vacios", Toast.LENGTH_SHORT).show();
                     return;
                 }

@@ -31,7 +31,6 @@ public class ComponentesInterfaz {
                         String dayFinal = String.valueOf(day);
 
                         if(month + 1 < 10) monthFinal = "0" + monthFinal;
-
                         if(day < 10) dayFinal = "0" + dayFinal;
 
                         fecha.put("anho", String.valueOf(year));

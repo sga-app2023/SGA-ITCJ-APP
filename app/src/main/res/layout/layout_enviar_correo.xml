@@ -76,7 +76,7 @@
             android:id="@+id/btn_enviar_correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:padding="15dp"
             android:textAllCaps="false"
             android:text="@string/btn_enviar"

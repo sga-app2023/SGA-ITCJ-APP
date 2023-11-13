@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rsu_itcjapp.datos.Alumno;
 import com.example.rsu_itcjapp.db.DatabaseSGA;
 import com.example.rsu_itcjapp.listView.DatosItemMenu;
 import com.example.rsu_itcjapp.listView.MenuAdapter;
@@ -47,7 +46,6 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-
     public void crearOpcionesAlumno(ListView listAlumno) {
         ArrayList<DatosItemMenu> alumnoAdapter = new ArrayList<>();
 
@@ -57,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
         layouts.put(DatosSistema.REC, DatosSistema.Layouts.RECICLAJE);
         layouts.put(DatosSistema.MPT, DatosSistema.Layouts.MARCADORESPILAS);
         layouts.put(DatosSistema.RSP, DatosSistema.Layouts.RESIDUOSPELIGROSOS);
-        layouts.put(DatosSistema.STAR, DatosSistema.Layouts.SISTEMADERIEGO);
+        layouts.put(DatosSistema.STR, DatosSistema.Layouts.SISTEMADERIEGO);
 
         alumnoAdapter.add(new DatosItemMenu(DatosSistema.DatosUsuario.alumno.getArea(),
                 R.drawable.ic_baseline_assignment_24));

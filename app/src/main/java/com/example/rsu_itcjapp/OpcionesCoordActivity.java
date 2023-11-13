@@ -59,7 +59,7 @@ public class OpcionesCoordActivity extends AppCompatActivity {
     }
 
     private void seleccionarLayout(int layout){
-        switch(layout) {
+        switch (layout) {
             case DatosSistema.Layouts.GENERARAVISO:
                 generarAviso();
                 break;

@@ -14,7 +14,7 @@ public class DatosSistema {
     public static final String REC = "Reciclaje";
     public static final String MPT = "Marcadores y Pilas";
     public static final String RSP = "Residuos Peligrosos";
-    public static final String STAR = "Sistema de Riego";
+    public static final String STR = "Sistema de Riego";
     public static final String EMAIL = "Enviar correo";
     public static final String PERFIL = "Perfil";
     public static final String AVISO = "Generar aviso";
@@ -33,8 +33,6 @@ public class DatosSistema {
         public static final int GENERARAVISO = R.layout.layout_generar_aviso;
         public static final int ALUMNOSSERVICIO = R.layout.layout_reportes_alumnos_servicio;
     }
-
-
 
     public static class DatosUsuario {
         public static Usuario usuario = null;

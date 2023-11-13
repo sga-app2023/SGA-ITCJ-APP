@@ -117,7 +117,7 @@
                 android:text="@string/btn_registrar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 app:backgroundTint="@color/red_600" />
 
         </LinearLayout>
