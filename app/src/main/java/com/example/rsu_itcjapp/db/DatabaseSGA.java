@@ -26,11 +26,11 @@ import java.util.HashMap;
 
 public class DatabaseSGA {
 
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-    private FirebaseDatabase db;
-    private DatabaseReference dbRef;
-    private Context context;
+    private final FirebaseAuth auth;
+    private final FirebaseUser user;
+    private final FirebaseDatabase db;
+    private final DatabaseReference dbRef;
+    private final Context context;
 
     public DatabaseSGA(Context context) {
         this.auth = FirebaseAuth.getInstance();

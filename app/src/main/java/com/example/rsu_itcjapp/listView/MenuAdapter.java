@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class MenuAdapter extends ArrayAdapter<DatosItemMenu> implements View.OnClickListener {
 
-    private ArrayList<DatosItemMenu> rowItems;
-    private Context context;
+    private final ArrayList<DatosItemMenu> rowItems;
+    private final Context context;
 
     public MenuAdapter(Context context, ArrayList<DatosItemMenu> datos){
         super(context, R.layout.row_item, datos);

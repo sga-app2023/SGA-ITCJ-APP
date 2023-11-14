@@ -11,7 +11,6 @@ import com.example.rsu_itcjapp.db.DatabaseSGA;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private DatabaseSGA databaseSGA;
     private Button btnAlumno, btnCoordinador;
 

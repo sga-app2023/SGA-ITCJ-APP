@@ -10,7 +10,7 @@ public class Usuario implements Serializable {
     private String area;
     private String tipo;
 
-    public Usuario(){
+    public Usuario() {
 
     }
 
