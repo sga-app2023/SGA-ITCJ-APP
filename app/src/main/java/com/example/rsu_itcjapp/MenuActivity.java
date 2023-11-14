@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        if(DatosSistema.DatosUsuario.alumno == null && DatosSistema.DatosUsuario.usuario == null) {
+        if (DatosSistema.DatosUsuario.alumno == null && DatosSistema.DatosUsuario.usuario == null) {
             Intent pantallaPrincipal = new Intent(MenuActivity.this, MainActivity.class);
             startActivity(pantallaPrincipal);
             finish();
@@ -52,6 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         twHeader.setText(getResources().getString(R.string.tw_alumno));
 
         HashMap<String, Integer> layouts = new HashMap<>();
+
         layouts.put(DatosSistema.REC, DatosSistema.Layouts.RECICLAJE);
         layouts.put(DatosSistema.MPT, DatosSistema.Layouts.MARCADORESPILAS);
         layouts.put(DatosSistema.RSP, DatosSistema.Layouts.RESIDUOSPELIGROSOS);

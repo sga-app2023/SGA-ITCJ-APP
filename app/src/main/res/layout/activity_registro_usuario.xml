@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="Fecha servicio:"
+                android:text="Fecha servicio social:"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 />
@@ -235,7 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:hint="Fin:"
+                        android:hint="Finalización:"
                         android:background="@color/white"
                         android:textColor="@color/black"/>
 
